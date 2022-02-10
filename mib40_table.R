@@ -7,6 +7,9 @@ library(portfolioBacktest)
 library(ggplot2)
 library(dplyr)
 
+# Import script from the library
+source("trading_library.R")
+
 # Download list MIB40
 url = "https://en.wikipedia.org/wiki/FTSE_MIB"
 mib40_list = url %>%
