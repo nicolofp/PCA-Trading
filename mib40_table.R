@@ -9,6 +9,7 @@ library(dplyr)
 
 # Import script from the library
 source("trading_library.R")
+#add comment
 
 # Download list MIB40
 url = "https://en.wikipedia.org/wiki/FTSE_MIB"
