@@ -15,14 +15,15 @@ url = "https://en.wikipedia.org/wiki/FTSE_MIB"
 mib40_list = url %>%
   read_html() %>%
   html_nodes(xpath='//*[@id="constituents"]') %>%
-  html_table() %>% 
+  html_table(fill=T) %>% 
   extract2(1) %>%
   select(Company, Ticker, `ISIN (and link to quote webpage)`) %>%
   rename(company = Company, ticker = Ticker, isin = `ISIN (and link to quote webpage)`) %>%
   as.data.table() 
 
+mib40_list = mib40_list[!is.na(isin)]
 # Download data from 2010 (Not all of them will be available)
-mib40_data = stockDataDownload(mib40_list$ticker,
+mib40_data = stockDataDownload(stock_symbols = mib40_list$ticker,
                                from = "2010-01-01",
                                to = Sys.Date(),
                                local_file_path = NULL)
